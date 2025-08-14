@@ -13,17 +13,17 @@ import LoginPage from "./page/LoginPage";
 import Layout from "./Layouts/Layout";
 
 const App = () => {
-  const DashboardLayout = () => {
-    return (
-      <>
-        <Topbar />
-        <div className="flex">
-          <Sidebar />
-          <Outlet />
-        </div>
-      </>
-    );
-  };
+  // const DashboardLayout = () => {
+  //   return (
+  //     <>
+  //       <Topbar />
+  //       <div className="flex">
+  //         <Sidebar />
+  //         <Outlet />
+  //       </div>
+  //     </>
+  //   );
+  // };
 
   const pagesRoute = createBrowserRouter([
     {
@@ -55,20 +55,6 @@ const App = () => {
     {
       path: "*",
       element: <PageNotFound />,
-    },
-    {
-      path: "/dashboard",
-      element: <DashboardLayout />,
-      children: [
-        {
-          path: "",
-          element: <Dashboard />,
-        },
-        {
-          path: "/dashboard/user-management",
-          element: <UserManagement />,
-        },
-      ],
     },
   ]);
 
