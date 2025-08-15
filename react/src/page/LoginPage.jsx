@@ -47,6 +47,7 @@ const LoginPage = () => {
           placeholder="Enter your email"
           className="border-2 rounded-md p-2 px-4"
           value={formData.email}
+          // value="hello"
           required
         />
         <input

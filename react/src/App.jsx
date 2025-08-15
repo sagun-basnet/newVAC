@@ -11,6 +11,7 @@ import ServicePage from "./page/ServicePage";
 import PageNotFound from "./page/PageNotFound";
 import LoginPage from "./page/LoginPage";
 import Layout from "./Layouts/Layout";
+import FetchAPI from "./page/FetchAPI";
 
 const App = () => {
   // const DashboardLayout = () => {
@@ -51,6 +52,10 @@ const App = () => {
     {
       path: "/login",
       element: <LoginPage />,
+    },
+    {
+      path: "/fetch-api",
+      element: <FetchAPI />,
     },
     {
       path: "*",
