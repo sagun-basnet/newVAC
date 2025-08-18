@@ -1,10 +1,7 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const LoginPage = () => {
-  const user = {
-    email: "jhon@gmail.com",
-    password: "1234567890",
-  };
   const init = {
     email: "",
     password: "",
@@ -15,7 +12,7 @@ const LoginPage = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.email.length === 0 || formData.password.length === 0) {
@@ -28,8 +25,19 @@ const LoginPage = () => {
       return;
     }
 
-    console.log(formData);
-    alert("Login successful!");
+    await axios
+      .post("http://192.168.1.47:5555/api/login", formData)
+      .then((res) => {
+        console.log(res.data);
+        alert(res.data.message);
+
+        localStorage.setItem("token", res.data.token);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Login failed. Please try again.");
+      });
+
     setFormData(init);
   };
   return (
