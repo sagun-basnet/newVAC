@@ -1,7 +1,12 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigation = useNavigate();
+  const { login } = useContext(AuthContext);
+
   const init = {
     email: "",
     password: "",
@@ -25,20 +30,14 @@ const LoginPage = () => {
       return;
     }
 
-    await axios
-      .post("http://192.168.1.47:5555/api/login", formData)
-      .then((res) => {
-        console.log(res.data);
-        alert(res.data.message);
+    const res = await login(formData);
+    // console.log(res);
 
-        localStorage.setItem("token", res.data.token);
-      })
-      .catch((err) => {
-        console.error(err);
-        alert("Login failed. Please try again.");
-      });
+    alert(res.data.message);
 
     setFormData(init);
+
+    navigation("/");
   };
   return (
     <div className="h-screen flex items-center justify-center">
